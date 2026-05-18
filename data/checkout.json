@@ -1,0 +1,49 @@
+{
+  "valid": [
+    { "firstName": "John", "lastName": "Doe", "zipCode": "12345" },
+    { "firstName": "Jane", "lastName": "Smith", "zipCode": "90210" },
+    { "firstName": "Test", "lastName": "User", "zipCode": "10001" }
+  ],
+  "invalid": [
+    {
+      "firstName": "",
+      "lastName": "",
+      "zipCode": "",
+      "errorMessage": "Error: First Name is required"
+    },
+    {
+      "firstName": "John",
+      "lastName": "",
+      "zipCode": "",
+      "errorMessage": "Error: Last Name is required"
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "zipCode": "",
+      "errorMessage": "Error: Postal Code is required"
+    }
+  ],
+  "edgeCases": [
+    {
+      "firstName": "José",
+      "lastName": "O'Brien-Smith",
+      "zipCode": "12345",
+      "description": "special characters"
+    },
+    {
+      "firstName": "12345",
+      "lastName": "67890",
+      "zipCode": "99999",
+      "description": "numeric names"
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "zipCode": "ABCDE",
+      "description": "alpha zip code"
+    }
+  ],
+  "payment": "SauceCard #31337",
+  "shipping": "Free Pony Express Delivery!"
+}
