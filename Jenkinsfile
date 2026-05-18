@@ -39,10 +39,8 @@ pipeline {
 
     post {
         always {
-            allure([
-                results: [[path: 'allure-results']]
-            ])
-            archiveArtifacts artifacts: 'allure-results/**', allowEmptyArchive: true
+            sh 'npx allure generate allure-results --clean -o allure-report || true'
+            archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
         }
         success {
             echo 'All tests passed!'
