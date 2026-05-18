@@ -39,22 +39,16 @@ pipeline {
 
     post {
         always {
-            sh 'npx allure generate allure-results --clean -o allure-report || true'
-            publishHTML(target: [
-                allowMissing         : true,
-                alwaysLinkToLastBuild: true,
-                keepAll              : true,
-                reportDir            : 'allure-report',
-                reportFiles          : 'index.html',
-                reportName           : 'Allure Report'
+            allure([
+                results: [[path: 'allure-results']]
             ])
-            archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'allure-results/**', allowEmptyArchive: true
         }
         success {
-            echo '✅ All tests passed!'
+            echo 'All tests passed!'
         }
         failure {
-            echo '❌ Some tests failed. Check the Allure Report.'
+            echo 'Some tests failed. Check the Allure Report.'
         }
     }
 }
