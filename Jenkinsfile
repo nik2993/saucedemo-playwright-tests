@@ -40,7 +40,14 @@ pipeline {
     post {
         always {
             sh 'npx allure generate allure-results --clean -o allure-report || true'
-            archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
+            publishHTML(target: [
+                allowMissing         : true,
+                alwaysLinkToLastBuild: true,
+                keepAll              : true,
+                reportDir            : 'allure-report',
+                reportFiles          : 'index.html',
+                reportName           : 'Allure Report'
+            ])
         }
         success {
             echo 'All tests passed!'
